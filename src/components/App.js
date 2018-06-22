@@ -20,9 +20,16 @@ export default class App extends Component {
     ]
   };
 
+  handleRemove = index => {
+    this.setState(({ tasks }) => {
+      tasks.splice(index, 1);
+      return tasks;
+    });
+  }
+
   render() {
     return (
-      <Tasks />
+      <Tasks tasks={this.state.tasks} onRemove={this.handleRemove}/>
     );
   }
 }
