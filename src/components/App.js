@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
+import Tasks from './Tasks';
 
 export default class App extends Component {
 
   state = {
-    notes: [
+    tasks: [
       { 
-        date: new Date('2/12/2018'),
-        text: 'Learn React'
+        text: 'Learn React',
+        level: 2
       },
       { 
-        date: new Date('2/27/2018'),
-        text: 'Learn Redux'
+        text: 'Learn Redux',
+        level: 3
       },
       { 
-        date: new Date('3/23/2018'),
-        text: 'Creat Cool Project'
+        text: 'Creat Cool Project',
+        level: 1
       }
     ]
   };
 
+  handleRemove = index => {
+    this.setState(({ tasks }) => {
+      tasks.splice(index, 1);
+      return tasks;
+    });
+  }
+
   render() {
     return (
-      <div>
-        Quiz
-      </div>
+      <Tasks tasks={this.state.tasks} onRemove={this.handleRemove}/>
     );
   }
 }
